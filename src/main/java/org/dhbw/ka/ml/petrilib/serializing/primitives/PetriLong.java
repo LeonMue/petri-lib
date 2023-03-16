@@ -14,7 +14,7 @@ public class PetriLong {
         return serialized.length;
     }
 
-    public static float deserialize(DataInput in) throws IOException {
+    public static long deserialize(DataInput in) throws IOException {
         return VarLong.deserializeSigned(in);
     }
 
