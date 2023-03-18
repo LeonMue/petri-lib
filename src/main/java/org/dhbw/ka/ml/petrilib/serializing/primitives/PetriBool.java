@@ -6,11 +6,15 @@ public class PetriBool {
 
     public static int serialize(boolean value, DataOutput out) throws IOException {
         out.writeBoolean(value);
-        return 1;
+        return byteSize();
     }
 
     public static boolean deserialize(DataInput in) throws IOException {
         return in.readBoolean();
+    }
+
+    public static int byteSize() {
+        return 1;
     }
 
 }

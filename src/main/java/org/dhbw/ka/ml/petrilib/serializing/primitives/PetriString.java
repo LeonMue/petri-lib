@@ -21,12 +21,16 @@ public class PetriString {
     }
 
     public static String deserialize(DataInput in) throws IOException {
-        int lengthOfSerializedString = VarInt.deserializeUnsigned(in);
+        int lengthOfSerializedString = readByteSize(in);
 
         byte[] serializedString = new byte[lengthOfSerializedString];
         in.readFully(serializedString, 0, serializedString.length);
 
         return new String(serializedString, StandardCharsets.UTF_8);
+    }
+
+    public static int readByteSize(DataInput in) throws IOException {
+        return VarInt.deserializeUnsigned(in);
     }
 
 }
