@@ -18,4 +18,8 @@ public class PetriInt {
         return VarInt.deserializeSigned(in);
     }
 
+    public static void skip(DataInput in) throws IOException {
+        deserialize(in);
+    }
+
 }

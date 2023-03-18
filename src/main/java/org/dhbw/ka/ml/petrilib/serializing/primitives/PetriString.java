@@ -3,7 +3,6 @@ package org.dhbw.ka.ml.petrilib.serializing.primitives;
 import org.dhbw.ka.ml.petrilib.serializing.VarInt;
 
 import java.io.DataInput;
-import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -31,6 +30,11 @@ public class PetriString {
 
     public static int readByteSize(DataInput in) throws IOException {
         return VarInt.deserializeUnsigned(in);
+    }
+
+    public static void skip(DataInput in) throws IOException {
+        int length = readByteSize(in);
+        in.skipBytes(length);
     }
 
 }
