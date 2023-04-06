@@ -13,6 +13,10 @@ public class ReadTrackingDataInput implements DataInput {
         this.in = in;
     }
 
+    public ReadTrackingDataInput(ReadTrackingDataInput in) {
+        this.in = in.in;
+    }
+
     @Override
     public void readFully(byte[] b) throws IOException {
         this.in.readFully(b);
