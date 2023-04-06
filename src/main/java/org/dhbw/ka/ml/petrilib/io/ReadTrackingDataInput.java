@@ -17,6 +17,10 @@ public class ReadTrackingDataInput implements DataInput {
         this.in = in.in;
     }
 
+    public void addToWasRead(int i) {
+        this.bytesWasRead += i;
+    }
+
     @Override
     public void readFully(byte[] b) throws IOException {
         this.in.readFully(b);
