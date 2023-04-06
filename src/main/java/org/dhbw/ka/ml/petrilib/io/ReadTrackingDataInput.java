@@ -4,10 +4,10 @@ import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class ReadTrackingDataInput implements DataInput, AutoCloseable {
+public class ReadTrackingDataInput implements DataInput {
 
     private int bytesWasRead = 0;
-    private DataInputStream in;
+    private DataInput in;
 
     public ReadTrackingDataInput(DataInputStream in) {
         this.in = in;
@@ -115,10 +115,5 @@ public class ReadTrackingDataInput implements DataInput, AutoCloseable {
 
     public int getBytesWasRead() {
         return bytesWasRead;
-    }
-
-    @Override
-    public void close() throws IOException {
-        this.in.close();
     }
 }
