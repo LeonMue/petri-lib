@@ -1,15 +1,12 @@
 package org.dhbw.ka.ml.petrilib.io;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInput;
-import java.io.DataInputStream;
-import java.io.IOException;
+import java.io.*;
 
-public class PetriReader implements DataInput, AutoCloseable {
+public class PetriReader extends InputStream implements DataInput, AutoCloseable {
 
     private final byte[] input;
 
-    private final DataInput din;
+    private final DataInputStream din;
 
     private int offset = 0;
 
@@ -128,7 +125,12 @@ public class PetriReader implements DataInput, AutoCloseable {
     }
 
     @Override
+    public int read() throws IOException {
+        return this.din.available() == 0 ? -1 : this.din.readUnsignedByte();
+    }
+
+    @Override
     public void close() throws IOException {
-        ((DataInputStream) this.din).close();
+        this.din.close();
     }
 }
