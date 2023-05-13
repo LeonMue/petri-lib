@@ -12,7 +12,7 @@ public class PetriString {
     public static int serialize(String value, DataOutput out) throws IOException {
         byte[] serializedString = value.getBytes(StandardCharsets.UTF_8);
 
-        out.writeInt(serializedString.length);
+        out.write(VarInt.serializeUnsigned(serializedString.length));
         out.write(serializedString);
 
         return 0;
@@ -28,7 +28,7 @@ public class PetriString {
     }
 
     public static int readByteSize(DataInput in) throws IOException {
-        return in.readInt();
+        return VarInt.deserializeUnsigned(in);
     }
 
     public static void skip(DataInput in) throws IOException {
